@@ -16,7 +16,7 @@ let routers = createBrowserRouter([
     path: "",
     element: <Layout />,
     children: [
-      { index: true, element: <Home/> },
+      { index: true, element: <Home /> },
       { path: "products", element: <Products /> },
       { path: "categoris", element: <Categoris /> },
       { path: "cart", element: <Cart /> },
