@@ -1,8 +1,16 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import  Style from "./Nave.module.css";
 import logo from "../Image/freshcart-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../Contects/UserContext";
 export default function Nave() {
+  let nav = useNavigate();
+  function logout() {
+    localStorage.removeItem("userToken");
+    nav("/login");
+    setUserToken(null);
+  }
+  let { userToken, setUserToken } = useContext(UserContext);
   return (
     <>
       <nav className="navbar navbar-expand-lg h-auto">
@@ -22,64 +30,68 @@ export default function Nave() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to=""
-                >
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="cart"
-                >
-                  Cart
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="products"
-                >
-                  Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="categoris"
-                >
-                  Categoris
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="brands"
-                >
-                  Brands
-                </Link>
-              </li>
-            </ul>
+            {userToken ? (
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active "
+                    id="hover-nave"
+                    aria-current="page"
+                    to=""
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active "
+                    id="hover-nave"
+                    aria-current="page"
+                    to="cart"
+                  >
+                    Cart
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active "
+                    id="hover-nave"
+                    aria-current="page"
+                    to="products"
+                  >
+                    Products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active "
+                    id="hover-nave"
+                    aria-current="page"
+                    to="categoris"
+                  >
+                    Categoris
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active "
+                    id="hover-nave"
+                    aria-current="page"
+                    to="brands"
+                  >
+                    Brands
+                  </Link>
+                </li>
+              </ul>
+            ) : null}
           </div>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li  className="nav-link active d-flex align-items-center"
-                  id="hover-nave"
-                  aria-current="page">
+              <li
+                className="nav-link active d-flex align-items-center"
+                id="hover-nave"
+                aria-current="page"
+              >
                 <i className="mx-2 fa-brands fa-instagram "></i>
                 <i className="mx-2 fa-brands fa-facebook"></i>
                 <i className="mx-2 fa-brands fa-tiktok"></i>
@@ -87,36 +99,42 @@ export default function Nave() {
                 <i className="mx-2 fa-brands fa-linkedin-in"></i>
                 <i className="mx-2 fa-brands fa-youtube"></i>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="register"
-                >
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="login"
-                >
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active "
-                  id="hover-nave"
-                  aria-current="page"
-                  to="logout"
-                >
-                  Logout
-                </Link>
-              </li>
+
+              {userToken ? (
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    id="hover-nave"
+                    aria-current="page"
+                    onClick={logout}
+                  >
+                    Logout
+                  </a>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active "
+                      id="hover-nave"
+                      aria-current="page"
+                      to="register"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active "
+                      id="hover-nave"
+                      aria-current="page"
+                      to="login"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
