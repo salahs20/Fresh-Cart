@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import  Style from "./Nave.module.css";
+import Style from "./Nave.module.css";
 import logo from "../Image/freshcart-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contects/UserContext";
@@ -102,14 +102,14 @@ export default function Nave() {
 
               {userToken ? (
                 <li className="nav-item">
-                  <a
-                    className="nav-link active"
+                  <span
+                    className="nav-link active cursor-pointer"
                     id="hover-nave"
                     aria-current="page"
                     onClick={logout}
                   >
                     Logout
-                  </a>
+                  </span>
                 </li>
               ) : (
                 <>

@@ -16,7 +16,9 @@ export default function Layout() {
   return (
     <>
       <Nave />
+      <div className="container">
       <Outlet />
+      </div>
       <Footer />
     </>
   );
