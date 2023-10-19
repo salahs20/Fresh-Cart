@@ -12,6 +12,7 @@ import Brands from "./components/Brands/Brands";
 import Logout from "./components/Logout/Logout";
 import UserContextProvider from "./Contects/UserContext";
 import Gurad from "./components/Gurad/Gurad";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 let routers = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ let routers = createBrowserRouter([
     children: [
       { index: true, element:<Gurad><Home/></Gurad> },
       { path: "products", element: <Gurad> <Products /></Gurad>  },
+      { path: "productDetails/:id", element: <Gurad> <ProductDetails /></Gurad>  },
       { path: "categoris", element: <Gurad> <Categoris /></Gurad>  },
       { path: "cart", element: <Gurad> <Cart /></Gurad>  },
       { path: "login", element:  <Login /> },

@@ -1,34 +1,68 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BallTriangle } from "react-loader-spinner";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+
 export default function FeturdProduct() {
-  const [FeturdProduct, setFeturdProduct] = useState([]);
-  async function getFeaturdProduct() {
-    let { data } = await axios.get(
-      `https://ecommerce.routemisr.com/api/v1/products`
-    );
-    setFeturdProduct(data.data);
-    console.log(data);
+  function getFeaturdProduct() {
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
   }
-  useEffect(() => {
-    getFeaturdProduct();
-  }, []);
+  let { data, isLoading, isFetching, isError } = useQuery(
+    "getFeaturdProduct",
+    getFeaturdProduct,
+    {
+      cacheTime: 30000,
+      refetchOnMount: false,
+    }
+  );
+  useQuery();
 
   return (
     <>
-      <div className="row gy-3">
-        {FeturdProduct.map((product) => (
-          <div key={product.id} className="col-md-2">
-            <img className="w-100" src={product.imageCover} alt="" />
-            <h2 className="font-sm text-main fw-bold">{product.category.name}</h2>
-           <h2 className="h5"> {product.title.split(' ').slice(0,2).join(' ')}</h2>
-           <div className="d-flex justify-content-between ">
-            <span>{product.price}EGP</span>
-            <span><i className="fas fa-star rating-color"></i>{product.ratingsAverage}</span>
-           </div>
-          </div>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="vh-100 w-l00 d-flex justify-content-center align-items-center">
+          <BallTriangle
+            height={100}
+            width={100}
+            radius={5}
+            color="#4fa94d"
+            ariaLabel="ball-triangle-loading"
+            wrapperClass={{}}
+            wrapperStyle=""
+            visible={true}
+          />{" "}
+        </div>
+      ) : (
+        <div className="row gy-4">
+          {data?.data.data.map((product) => (
+            <div key={product.id} className="col-md-2">
+              <div className="product p-2">
+                <Link to={`/productDetails/${product.id}`}>
+                <img className="w-100" src={product.imageCover} alt="" />
+                <h2 className="font-sm text-main fw-bold">
+                  {product.category.name}
+                </h2>
+                <h2 className="h5 fw-bold">
+                  {" "}
+                  {product.title.split(" ").slice(0, 2).join(" ")}
+                </h2>
+                <div className="d-flex justify-content-between ">
+                  <span>{product.price}EGP</span>
+                  <span>
+                    <i className="fas fa-star rating-color"></i>
+                    {product.ratingsAverage}
+                  </span>
+                </div>
+                </Link>
+                <button className="btn text-white w-100 font-sm bg-main ">
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
-
