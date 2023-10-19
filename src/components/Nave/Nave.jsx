@@ -14,7 +14,7 @@ export default function Nave() {
   return (
     <>
       <nav className="navbar navbar-expand-lg h-auto">
-        <div className="container-fluid">
+        <div className="container">
           <Link className="navbar-brand text-white" to="">
             <img src={logo} alt="" />
           </Link>
@@ -31,7 +31,7 @@ export default function Nave() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             {userToken ? (
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul className="navbar-nav m-auto mb-lg-0">
                 <li className="nav-item">
                   <Link
                     className="nav-link active "
@@ -86,7 +86,7 @@ export default function Nave() {
             ) : null}
           </div>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto  mb-lg-0">
               <li
                 className="nav-link active d-flex align-items-center"
                 id="hover-nave"

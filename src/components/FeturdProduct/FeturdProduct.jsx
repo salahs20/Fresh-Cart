@@ -39,21 +39,21 @@ export default function FeturdProduct() {
             <div key={product.id} className="col-md-2">
               <div className="product p-2">
                 <Link to={`/productDetails/${product.id}`}>
-                <img className="w-100" src={product.imageCover} alt="" />
-                <h2 className="font-sm text-main fw-bold">
-                  {product.category.name}
-                </h2>
-                <h2 className="h5 fw-bold">
-                  {" "}
-                  {product.title.split(" ").slice(0, 2).join(" ")}
-                </h2>
-                <div className="d-flex justify-content-between ">
-                  <span>{product.price}EGP</span>
-                  <span>
-                    <i className="fas fa-star rating-color"></i>
-                    {product.ratingsAverage}
-                  </span>
-                </div>
+                  <img className="w-100" src={product.imageCover} alt="" />
+                  <h2 className="font-sm text-main fw-bold">
+                    {product.category.name}
+                  </h2>
+                  <h2 className="h5 fw-bold">
+                    {" "}
+                    {product.title.split(" ").slice(0, 2).join(" ")}
+                  </h2>
+                  <div className="d-flex justify-content-between ">
+                    <span>{product.price}EGP</span>
+                    <span>
+                      <i className="fas fa-star rating-color"></i>
+                      {product.ratingsAverage}
+                    </span>
+                  </div>
                 </Link>
                 <button className="btn text-white w-100 font-sm bg-main ">
                   Add To Cart
