@@ -3,7 +3,8 @@ import style from "./Layout.module.css";
 import Nave from "../Nave/Nave";
 import Footer from "../Footer/Foooter";
 import { Outlet } from "react-router";
-import { UserContext } from "../../Contects/UserContext";
+import { UserContext } from "../../Context/UserContext";
+import Search from "../search/search";
 
 export default function Layout() {
   let { setUserToken } = useContext(UserContext);
@@ -16,10 +17,10 @@ export default function Layout() {
   return (
     <>
       <Nave />
+
       <div className="container">
-      <Outlet />
+        <Outlet />
       </div>
-      <Footer />
     </>
   );
 }

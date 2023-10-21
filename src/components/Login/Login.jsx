@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router";
-import { UserContext } from "../../Contects/UserContext";
+import { UserContext } from "../../Context/UserContext";
 
 export default function Register() {
   let { setUserToken } = useContext(UserContext);

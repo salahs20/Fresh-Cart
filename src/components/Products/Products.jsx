@@ -16,8 +16,6 @@ export default function FeturdProduct() {
       refetchOnMount: false,
     }
   );
-  useQuery();
-
   return (
     <>
       {isLoading ? (

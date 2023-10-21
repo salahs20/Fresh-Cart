@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { cartContext } from "../../Context/CartContext";
 
 export default function FeturdProduct() {
+  let { addToCart } = useContext(cartContext);
+  async function addCart(id) {
+    let { data } = await addToCart(id);
+    console.log(data);
+  }
   function getFeaturdProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
   }
@@ -16,8 +23,6 @@ export default function FeturdProduct() {
       refetchOnMount: false,
     }
   );
-  useQuery();
-
   return (
     <>
       {isLoading ? (
@@ -36,9 +41,9 @@ export default function FeturdProduct() {
       ) : (
         <div className="row gy-4">
           {data?.data.data.map((product) => (
-            <div key={product.id} className="col-md-2">
+            <div key={product.id} className="col-md-3">
               <div className="product p-2">
-                <Link to={`/productDetails/${product.id}`}>
+                <Link to={`/productDetails/${product._id}`}>
                   <img className="w-100" src={product.imageCover} alt="" />
                   <h2 className="font-sm text-main fw-bold">
                     {product.category.name}
@@ -55,7 +60,7 @@ export default function FeturdProduct() {
                     </span>
                   </div>
                 </Link>
-                <button className="btn text-white w-100 font-sm bg-main ">
+                <button onClick={()=> addCart(product._id)} className="btn text-white w-100 font-sm bg-main ">
                   Add To Cart
                 </button>
               </div>

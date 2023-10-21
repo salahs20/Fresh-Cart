@@ -37,8 +37,8 @@ export default function Brands() {
         <div className="row gy-4 mt-4">
           <h1 className="text-main fw-bold text-center ">All Brands</h1>
           {data?.data.data.map((Brands) => (
-            <div key={Brands.id} className="col-md-3">
-              <div className="border border-2">
+            <div key={Brands._id} className="col-md-3">
+              <div className="border border-2 product ">
                 <Link>
                   <img className="w-100" src={Brands.image} alt="" />
                   <h2 className="h5 text-center">{Brands.name}</h2>

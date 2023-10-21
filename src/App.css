@@ -63,3 +63,10 @@ a:hover {
 .bg-main-light {
     background-color: var(--light-color) !important;
 }
+.fixed-height{
+    height: 400px;
+    overflow: hidden;
+}
+.cover{
+    background-size: cover;
+}

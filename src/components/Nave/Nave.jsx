@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Style from "./Nave.module.css";
 import logo from "../Image/freshcart-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../Contects/UserContext";
+import { UserContext } from "../../Context/UserContext";
 export default function Nave() {
   let nav = useNavigate();
   function logout() {
