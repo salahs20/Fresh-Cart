@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { cartContext } from "../../Context/CartContext";
+import toast from "react-hot-toast";
 
 export default function FeturdProduct() {
+  let { addToCart } = useContext(cartContext);
+  async function addCart(id) {
+    let { data } = await addToCart(id);
+
+    if (data.status === "success") {
+      toast.success("Successfully created!");
+    }
+  }
+
   function getFeaturdProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
   }
@@ -53,7 +64,10 @@ export default function FeturdProduct() {
                     </span>
                   </div>
                 </Link>
-                <button className="btn text-white w-100 font-sm bg-main ">
+                <button
+                  onClick={() => addCart(product.id)}
+                  className="btn text-white w-100 font-sm bg-main mt-2"
+                >
                   Add To Cart
                 </button>
               </div>

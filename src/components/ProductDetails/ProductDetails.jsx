@@ -6,18 +6,23 @@ import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { TailSpin } from "react-loader-spinner";
 import { cartContext } from "../../Context/CartContext";
+import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 export default function ProductDetails() {
   let { addToCart } = useContext(cartContext);
   async function addCart(id) {
     let { data } = await addToCart(id);
-    console.log(data);
+
+    if (data.status === "success") {
+      toast.success("Successfully created!");
+    }
   }
   var settings = {
     dots: false,
-    arrows:false,
-    autoplay:true,
-    autoplaySpeed:1000,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 1000,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -33,6 +38,10 @@ export default function ProductDetails() {
   );
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{data?.data.data.title}</title>
+      </Helmet>
       {isLoading ? (
         <div className="vh-100 w-l00 d-flex justify-content-center align-items-center">
           <TailSpin
@@ -51,7 +60,7 @@ export default function ProductDetails() {
           <div className="col-md-3">
             <Slider {...settings}>
               {data?.data.data.images.map((image) => (
-                <img src={image} alt="" />
+                <img key={data?.data.data._id} src={image} alt="" />
               ))}
             </Slider>
           </div>
@@ -69,7 +78,10 @@ export default function ProductDetails() {
                   {data?.data.data.ratingsAverage}
                 </span>
               </div>
-              <button onClick={()=> addCart(data?.data.data.id)} className="btn text-white w-100 font-sm bg-main mt-2">
+              <button
+                onClick={() => addCart(data?.data.data.id)}
+                className="btn text-white w-100 font-sm bg-main mt-2"
+              >
                 Add To Cart
               </button>
             </div>

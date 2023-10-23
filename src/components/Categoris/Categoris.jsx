@@ -37,7 +37,7 @@ export default function Categoris() {
         <div className="row gy-4 mt-4">
           <h1 className="text-main fw-bold text-center ">All Categoris</h1>
           {data?.data.data.map((Categoris) => (
-            <div key={Categoris.id} className="col-md-4">
+            <div key={Categoris._id} className="col-md-4">
               <div className="border border-3">
                 <Link>
                   <div className="product p-2">

@@ -14,6 +14,8 @@ import UserContextProvider from "./Context/UserContext";
 import Gurad from "./components/Gurad/Gurad";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CartContextProvider from "./Context/CartContext";
+import { Offline, Online } from "react-detect-offline";
+import { Toaster } from 'react-hot-toast';
 let routers = createBrowserRouter([
   {
     path: "",
@@ -94,6 +96,14 @@ function App() {
       <CartContextProvider>
         <UserContextProvider>
           <RouterProvider router={routers}></RouterProvider>
+          <div>
+            <Offline>
+              <div className="offline text-danger fw-bold ">
+                <i className="fas fa-wifi text-danger"> </i> Only shown offline (surprise!)
+              </div>
+            </Offline>
+          </div>
+          <Toaster/>
         </UserContextProvider>
       </CartContextProvider>
     </>

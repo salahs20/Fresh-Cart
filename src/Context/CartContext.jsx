@@ -22,5 +22,26 @@ export default function CartContextProvider({ children }) {
       .then((res) => res)
       .catch((err) => err);
   }
-  return <cartContext.Provider value={{addToCart}}> {children}</cartContext.Provider>
+  function getCart() {
+    return axios
+      .get(`https://ecommerce.routemisr.com/api/v1/cart`,{
+        headers:{token: localStorage.getItem("userToken")},
+      })
+      .then((res) => res)
+      .catch((err) => err);
+  }
+  function removeCartItem(id) {
+    return axios
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
+        headers:{token: localStorage.getItem("userToken")},
+      })
+      .then((res) => res)
+      .catch((err) => err);
+  }
+  return (
+    <cartContext.Provider value={{ addToCart, getCart , removeCartItem}}>
+      {" "}
+      {children}
+    </cartContext.Provider>
+  );
 }

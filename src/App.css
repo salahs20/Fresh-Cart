@@ -70,3 +70,15 @@ a:hover {
 .cover{
     background-size: cover;
 }
+.offline{
+    position: fixed;
+    top: 0;
+    right: 50%;
+    transform: rotateY(50%);
+    -webkit-transform: rotateY(50%);
+    -moz-transform: rotateY(50%);
+    -ms-transform: rotateY(50%);
+    -o-transform: rotateY(50%);
+    z-index: 999;
+    padding: 10px;
+}
